@@ -1,0 +1,28 @@
+parsing
+flex pass 1
+flex pass 2
+flex pass 3
+Output pass
+Writing prg file: main.prg
+
+Memory Map
+----------
+Default-segment:
+  $0801-$0800 Basic Loader
+  $0801-$080d Basic
+  $080e-$080d Basic End
+  $0900-$10d5 sprite0
+  $2000-$27ff character data
+  $2800-$2be7 Screen charater data
+  $2be8-$2fcf Colour data
+  $2fd0-$3062 setup
+  $3063-$344a Main
+
+Got 0 errors and 18 warnings while executing:
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 400:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 402:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 420:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 422:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 440:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  ...
+
