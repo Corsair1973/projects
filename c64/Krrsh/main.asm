@@ -91,7 +91,7 @@ rts
 }
 
 spriteUpdate: {
-        jsr debug
+       // jsr debug
         jsr updatePlayerBullet
         lda playerState
         cmp #Jumping// Is the player Jumping
@@ -253,9 +253,11 @@ xaxis:
         dec xposlb //  move left
         dec xposlb 
         dec xposlb
+        dec xposlb
         jmp doneX
 incX2:   
         inc xposlb // move right
+        inc xposlb
         inc xposlb
         inc xposlb
 doneX:
@@ -263,34 +265,7 @@ doneX:
         sta SP0X // store sum in sprite 0 x position low byte 
 rts
 }
-/* CollisionCheckOld: {
 
-        lda SPCRCL // Sprite - Character collision register
-        and #%00000001 // check bit 0 for background char collision. 1 = no collision.
-        bne Collision // If collision then Sprite 0 is walking on platform
-      //  lda playerState
-      //  cmp #Landing
-      //  beq fall
-        //sta playerPreviousState
-       // lda #Landing
-       // sta playerState
-fall:   inc ypos // Else decrement Y axis "falling down"
-        inc ypos 
-        lda ypos
-        sta SP0Y
-
-        jmp done
-       // inc temp2 //debug
-Collision:
-        lda playerState
-        beq done // If already OnGround then skip to end
-        //sta playerPreviousState
-        lda #OnGround // Else change state
-        sta playerState
-
-done:
-        rts
-} */
 
 CollisionCheck: {
         // Called after PixelToChars
@@ -415,7 +390,7 @@ updatePlayerBullet: {
         dec bulletCounter // If Fired then reduce counter
         bne exit // Reached zero? If not then exit
        // jsr initializeZeroPage // Else reset zero page
-        lda #10 
+        lda #BltSpeed 
         sta bulletCounter // Reset bullet counter
         lda <bulletPos // Get low byte of bullet position
         sta ZeroPageParam3 // 
@@ -430,9 +405,15 @@ updatePlayerBullet: {
 Right:
       
         jsr bltRightLimit // check for right of screen limit
+        //jmp done
+       // inc temp2
+        lda fired
+        beq exit
         jmp done
 Left:
         jsr bltLeftLimit // check for left of screen limit
+        lda fired
+        beq exit
 done:
         lda #BLT01
         sta (ZeroPageParam3),y
@@ -458,6 +439,7 @@ bltRightLimit: {
         cmp <bulletPos //ZeroPageParam3 // compare with bullet pos high byte
         beq limitReached // if it matches then go to limit reached
 ahead:
+        ldy #0
         clc
         lda ZeroPageParam3
         adc #1 // increase position by 1 char
@@ -465,6 +447,9 @@ ahead:
         lda ZeroPageParam4
         adc #0
         sta ZeroPageParam4
+        lda (ZeroPageParam3),y
+        cmp #SpaceCharacter
+        bne limitReached
         jmp done
 limitReached:
         lda #False
@@ -477,13 +462,14 @@ bltLeftLimit: {
         dex
         lda ScreenCharLimitsHigh,x
         sta >ScreenCharLimit
-        cmp >bulletPos
+        cmp >bulletPos 
         bne ahead2
         lda ScreenCharLimitsLow,x
         sta <ScreenCharLimit
-        cmp <bulletPos
+        cmp <bulletPos 
         beq limitReached
 ahead2: 
+        ldy #0
         sec
         lda ZeroPageParam3
         sbc #1
@@ -491,6 +477,9 @@ ahead2:
         lda ZeroPageParam4
         sbc #0
         sta ZeroPageParam4
+        lda (ZeroPageParam3),y
+        cmp #SpaceCharacter
+        bne limitReached
         jmp done
 limitReached:
         lda #False
@@ -512,12 +501,12 @@ initializeZeroPage: {
 debug: {
 // Debug  start
 
-LIBSCREEN_DEBUG8BIT_VVA(10,10,BulletScreenIndex)
-LIBSCREEN_DEBUG8BIT_VVA(10,12,<bulletPos)
-LIBSCREEN_DEBUG8BIT_VVA(08,12,>bulletPos)
+LIBSCREEN_DEBUG8BIT_VVA(10,10,fired)
+//LIBSCREEN_DEBUG8BIT_VVA(10,12,temp2)
+/*LIBSCREEN_DEBUG8BIT_VVA(08,12,>bulletPos)
 
 LIBSCREEN_DEBUG8BIT_VVA(10,16,<ScreenCharLimit)
-LIBSCREEN_DEBUG8BIT_VVA(08,16,>ScreenCharLimit)
+LIBSCREEN_DEBUG8BIT_VVA(08,16,>ScreenCharLimit) */
  
 
 // Debug end
@@ -535,7 +524,7 @@ playerPreviousState:    .byte OnGround
 jumpCounter:            .byte 10
 fired:                  .byte False
 fireDirection:          .byte 0
-bulletCounter:          .byte 10
+bulletCounter:          .byte BltSpeed
 BulletScreenIndex:      .byte 0
 bulletPos:              .byte 0,0
 bulletRL:               .byte 39

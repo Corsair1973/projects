@@ -16,13 +16,13 @@ Default-segment:
   $2800-$2be7 Screen charater data
   $2be8-$2fcf Colour data
   $2fd0-$3062 setup
-  $3063-$344a Main
+  $3063-$33b7 Main
 
-Got 0 errors and 18 warnings while executing:
-  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 400:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
-  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 402:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
-  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 420:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
-  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 422:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
-  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 440:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+Got 0 errors and 14 warnings while executing:
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 375:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 377:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 395:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 397:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
+  (/Users/stephenwillcott/Documents/programs/SpecNext/projects/c64/Krrsh/main.asm 421:9) Warning: Using absolute mode for zeropage argument. Try defing involved labels before this statement.
   ...
 

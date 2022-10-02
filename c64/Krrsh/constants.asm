@@ -20,6 +20,7 @@
 .const Shooting        = 3
 .const Shot            = 4
 .const JumpHeight      = 10
+.const BltSpeed        = 3
 
 
 //===============================================================================
@@ -117,7 +118,7 @@
 .const VCREG3          = $D412 //(54290)
 .const ATDCY3          = $D413 //(54291)
 .const SUREL3          = $D414 //(54292)
-.const SIGVOL          = $D418 //(54296)     ß 
+.const SIGVOL          = $D418 //(54296)      
 .const COLORRAM        = $D800
 .const CIAPRA          = $DC00
 .const CIAPRB          = $DC01
